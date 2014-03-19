@@ -1,4 +1,4 @@
 KnockoutDataGridLab
 ===================
 
-Researching on data grids with Knockout.js for Asp.Net MVC 
+Researching on knockout data grids for Asp.Net MVC 
