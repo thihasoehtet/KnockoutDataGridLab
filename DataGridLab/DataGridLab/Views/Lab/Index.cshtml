@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/knockout")
+</head>
+<body>
+    <table id="normal">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr>
+                <td data-bind="text: ID"></td>
+                <td data-bind="text: Company"></td>
+                <td data-bind="text: Name"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table data-bind="sGrid: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: data, bodyData: data }"></table>
+
+    <script type="text/html" id="thead-template">
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Name</th>
+        </tr>
+    </script>
+
+    <script type="text/html" id="tbody-template">
+        <tr>
+            <td data-bind="text: ID"></td>
+            <td data-bind="text: Company"></td>
+            <td data-bind="text: Name"></td>
+        </tr>
+    </script>
+
+    @Scripts.Render("~/bundles/lab")
+</body>
+</html>

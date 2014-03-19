@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>    
+    <title>KoGrid</title>
+    @Styles.Render("~/Content/kogrid/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/knockout", "~/bundles/kogrid") 
+</head>
+<body>
+    <div data-bind="koGrid: { data: myObsArray }"></div>
+
+    @Scripts.Render("~/bundles/kogrid/lab")
+</body>
+</html>

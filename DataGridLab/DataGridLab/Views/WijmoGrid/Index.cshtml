@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>WijmoGrid</title>    
+    @Styles.Render("~/Content/wijmo/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/knockout", "~/bundles/wijmo")        
+</head>
+<body>
+    <div class="container"> 
+        <div class="header"> 
+            <h2> 
+                Overview</h2> 
+        </div> 
+        <div class="main demo"> 
+            <!-- Begin demo markup -->
+            <p> 
+              wijgrid: 
+            </p> 
+            <table id="dataGrid" data-bind="wijgrid: { data: data, allowEditing: true }"> 
+            </table> 
+            <p> 
+              regular table: 
+            </p> 
+            <table id="log" class="ui-widget ui-widget-content" rules="all"> 
+              <tbody data-bind="foreach: data"> 
+                <tr> 
+                  <td data-bind="text: ID"></td> 
+                  <td data-bind="text: Company"></td> 
+                  <td data-bind="text: Name"></td> 
+                </tr> 
+              </tbody> 
+            </table> 
+            <!-- End demo markup -->
+            <div class="demo-options"> 
+                <!-- Begin options markup -->
+                <input type="button" id="btnAddRow" onclick="addRow()" value="Add row" /> 
+                <!-- End options markup -->
+            </div> 
+        </div> 
+        <div class="footer demo-description"> 
+            <p> 
+                Wijmo provides a Knockout integration library so that all jQuery UI and Wijmo widgets can be used with Knockout.  
+            </p> 
+        </div> 
+    </div>
+    
+    @Scripts.Render("~/bundles/wijmo/lab")   
+</body>
+</html>
