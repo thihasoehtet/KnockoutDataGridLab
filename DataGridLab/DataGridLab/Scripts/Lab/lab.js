@@ -2,8 +2,42 @@
     ko.bindingHandlers.sGrid = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
             var value = valueAccessor();
-            $(element).append('<thead data-bind="template: { name: \'' + value.theadTemplate + '\', data: {} }"></thead>');
-            $(element).append('<tbody data-bind="template: { name: \'' + value.tbodyTemplate + '\', foreach: data }"></tbody>');
+            renderthead(element, value);
+            rendertbody(element, value);
+        }
+    };
+
+    var renderthead = function (element, value) {        
+        var theadTag = '';
+        if (value.theadTemplate) {
+            var template = '';
+            if (!value.headData) {
+                template = '\'' + value.theadTemplate + '\'';
+            } else {
+                template = '{ name: \'' + value.theadTemplate + '\', data: ' + value.headData + ' }';
+            }
+            theadTag = '<thead data-bind="template: ' + template + '"></thead>';
+            
+        } else {
+            var headerCols = '';
+            for (var prop in value.bodyData) {
+                headerCols += '<th>' + prop + '</th>';
+            }
+            theadTag = '<thead><tr>' + headerCols + '</tr></thead>';            
+        }
+        $(element).append(theadTag);
+    };
+
+    var rendertbody = function (element, value) {
+        if (value.tbodyTemplate) {
+            var template = '';
+            if (!value.bodyData) {
+                template = '\'' + value.tbodyTemplate + '\'';
+            } else {
+                template = '{ name: \'' + value.tbodyTemplate + '\', foreach: ' + value.bodyData + ' }';
+            }
+            var tbodyTag = '<tbody data-bind="template: ' + template + '"></tbody>';
+            $(element).append(tbodyTag);
         }
     };
 
@@ -12,6 +46,7 @@
         this.Company = ko.observable(data.Company);
         this.Name = ko.observable(data.Name);
     };
+
     var viewModel = {
         data: ko.observableArray([
             new Person({ ID: "ANATR", Company: "Ana Trujillo Emparedados y helados", Name: "Ana Trujillo" }),
@@ -20,5 +55,6 @@
             new Person({ ID: "BERGS", Company: "Berglunds snabbkop", Name: "Christina Berglund" })
         ])
     };
+
     ko.applyBindings(viewModel);
 })(jQuery, window);
