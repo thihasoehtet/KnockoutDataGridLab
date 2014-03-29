@@ -1,5 +1,5 @@
 ﻿(function ($, window) {
-    ko.bindingHandlers.sGrid = {
+    ko.bindingHandlers.table = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
             var value = valueAccessor();
             renderthead(element, value);
