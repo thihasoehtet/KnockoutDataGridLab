@@ -10,40 +10,30 @@
     @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/knockout")
 </head>
 <body>
-    <table id="normal">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Company</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: data">
-            <tr>
-                <td data-bind="text: ID"></td>
-                <td data-bind="text: Company"></td>
-                <td data-bind="text: Name"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <h3>Normal Data Bind</h3>
+        <table id="normal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: data">
+                <tr>
+                    <td data-bind="text: ID"></td>
+                    <td data-bind="text: Company"></td>
+                    <td data-bind="text: Name"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <table data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: '{}', bodyData: 'data' }"></table>
-
-    <script type="text/html" id="thead-template">
-        <tr>
-            <th>ID</th>
-            <th>Company</th>
-            <th>Name</th>
-        </tr>
-    </script>
-
-    <script type="text/html" id="tbody-template">
-        <tr>
-            <td data-bind="text: ID"></td>
-            <td data-bind="text: Company"></td>
-            <td data-bind="text: Name"></td>
-        </tr>
-    </script>
+    <div>
+        <h3>Data Binding with Template</h3>
+        <table data-bind="table: data"></table>
+    </div>
 
     @Scripts.Render("~/bundles/lab")
 </body>
