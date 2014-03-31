@@ -31,9 +31,30 @@
     </div>
 
     <div>
-        <h3>Data Binding with Template</h3>
+        <h3>Simple Data Binding</h3>
         <table data-bind="table: data"></table>
     </div>
+
+    <div>
+        <h3>Template Data Binding</h3>
+        <table data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: {}, bodyData: data }"></table>
+    </div>
+
+    <script type="text/html" id="thead-template">
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Name</th>
+        </tr>
+    </script>
+
+    <script type="text/html" id="tbody-template">
+        <tr>
+            <td data-bind="text: ID"></td>
+            <td data-bind="text: Company"></td>
+            <td data-bind="text: Name"></td>
+        </tr>
+    </script>
 
     @Scripts.Render("~/bundles/lab")
 </body>
