@@ -90,7 +90,7 @@
                 sPropData = sPropData.slice(0, indexOfPropData);
             }
         }
-        return sPropData;
+        return sPropData.trim();
     }
 
     var getReturnDataAsString = function (source) {
@@ -104,7 +104,7 @@
             indexOfReturnData = sReturnData.indexOf(" }");
             sReturnData = sReturnData.slice(0, indexOfReturnData);
         }
-        return sReturnData;
+        return sReturnData.trim();
     }
 
     function Person(data) {
