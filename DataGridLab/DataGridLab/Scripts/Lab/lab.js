@@ -1,10 +1,20 @@
 ﻿(function ($, window) {
     ko.bindingHandlers.table = {
-        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {            
-            renderthead(element, valueAccessor);
-            rendertbody(element, valueAccessor);
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            if (!$(element).is('div')) return;
+            buildTable(element, valueAccessor);
         }
     };
+
+    var buildTable = function (element, valueAccessor) {
+        var table = addTable(element);
+        renderthead(table, valueAccessor);
+        rendertbody(table, valueAccessor);
+    };
+
+    var addTable = function (element) {
+        return $(element).append('<table></table>').get(0);
+    }
 
     var renderthead = function (element, valueAccessor) {
         var value = valueAccessor();
