@@ -29,15 +29,15 @@
             </tbody>
         </table>
     </div>
- 
+
     <div>
         <h3>Simple Data Binding</h3>
-        <div data-bind="table: data"></div>
+        <table data-bind="table: data"></table>
     </div>
 
     <div>
         <h3>Template Data Binding</h3>
-        <div data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: {}, bodyData: data }"></div>
+        <table data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: {}, bodyData: data }"></table>
     </div>
 
     <script type="text/html" id="thead-template">

@@ -69,6 +69,7 @@ namespace DataGridLab
                         "~/Scripts/WijmoGridLab/wijmoGridLab.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lab").Include(
+                        "~/Scripts/Lab/knockout-table.js",
                         "~/Scripts/Lab/lab.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kogrid").Include(

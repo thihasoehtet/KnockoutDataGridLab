@@ -324,6 +324,7 @@
     <Content Include="Scripts\koGrid-2.1.1.debug.js" />
     <Content Include="Scripts\koGrid-2.1.1.js" />
     <Content Include="Scripts\KoGridLab\koGridLab.js" />
+    <Content Include="Scripts\Lab\knockout-table.js" />
     <Content Include="Scripts\Lab\lab.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\WijmoGridLab\wijmoGridLab.js" />
