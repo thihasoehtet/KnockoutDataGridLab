@@ -37,8 +37,9 @@
 
     <div>
         <h3>Template Data Binding</h3>
-        <table data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: {}, bodyData: data }"></table>
-    </div>
+        <input id="filterSearch" type="text" placeholder="Search" />
+        <table data-bind="table: { theadTemplate: 'thead-template', tbodyTemplate: 'tbody-template', headData: {}, bodyData: data, filter: '#filterSearch' }"></table>
+    </div>    
 
     <script type="text/html" id="thead-template">
         <tr>

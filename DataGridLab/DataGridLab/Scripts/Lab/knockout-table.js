@@ -9,9 +9,23 @@
     };
 
     var applyChildBindingsToDescendants = function (element, valueAccessor, bindingContext) {
-        var _bodyData = valueAccessor();
+        var value = valueAccessor();
         if (valueAccessor().bodyData) {
-            _bodyData = valueAccessor().bodyData;
+            value = valueAccessor().bodyData;
+        }
+        var _bodyData = ko.observableArray();
+        ko.utils.arrayForEach(ko.unwrap(value), function (item) {
+            _bodyData.push(item);
+        });
+        
+        if (valueAccessor().filter) {
+            onFilter(valueAccessor().filter, value, _bodyData);           
+        } else {
+            var filterTextbox = document.createElement("input");
+            filterTextbox.type = "text";
+            $(filterTextbox).attr("placeholder", "Search");
+            $(element).before($(filterTextbox));
+            onFilter(filterTextbox, value, _bodyData);
         }
         var _headData = {};
         if (valueAccessor().headData) {
@@ -25,6 +39,22 @@
                 ko.utils.extend(context, { headData: _headData, bodyData: _bodyData });
             });
         ko.applyBindingsToDescendants(childBindingContext, element);
+    };
+
+    var onFilter = function (filterElement, sourceData, bodyData) {
+        $(filterElement).keyup(function (e) {
+            var filterVal = $(this).val();
+            var data = ko.unwrap(sourceData);
+            var filteredData = ko.utils.arrayFilter(data, function (item) {
+                var itemString = "";
+                for (var prop in item) {
+                    itemString += (" " + ko.unwrap(item[prop]));
+                }
+                itemString = ko.utils.stringTrim(itemString);
+                return itemString.toLowerCase().indexOf(filterVal) > -1;
+            });
+            bodyData(filteredData);
+        });
     };
 
     var buildTable = function (element, valueAccessor) {
