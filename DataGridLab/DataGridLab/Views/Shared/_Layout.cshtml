@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
     </head>
     <body>
         <header>
@@ -24,6 +25,7 @@
                             <li>@Html.ActionLink("WijmoGrid", "Index", "WijmoGrid")</li>
                             <li>@Html.ActionLink("KoGrid", "Index", "KoGrid")</li>
                             <li>@Html.ActionLink("Lab", "Index", "Lab")</li>
+                            <li>@Html.ActionLink("Knockout", "Index", "Knockout")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
@@ -43,9 +45,7 @@
                     <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
                 </div>
             </div>
-        </footer>
-
-        @Scripts.Render("~/bundles/jquery")
+        </footer>        
         @RenderSection("scripts", required: false)
     </body>
 </html>

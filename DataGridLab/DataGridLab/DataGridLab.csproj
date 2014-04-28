@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KnockoutController.cs" />
     <Compile Include="Controllers\KoGridController.cs" />
     <Compile Include="Controllers\LabController.cs" />
     <Compile Include="Controllers\WijmoGridController.cs" />
@@ -370,6 +371,8 @@
     <Content Include="Views\Lab\Index.cshtml" />
     <Content Include="Views\KoGrid\Index.cshtml" />
     <Content Include="Views\WijmoGrid\Index.cshtml" />
+    <Content Include="Views\Knockout\Index.cshtml" />
+    <Content Include="Scripts\Knockout\knockout.index.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

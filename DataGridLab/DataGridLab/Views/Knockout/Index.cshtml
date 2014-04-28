@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Knockout";
+}
+
+<h2>Knockout</h2>
+<input type="text" placeholder="Search" data-bind="event: { keyup: onFilter }" />
+<table>
+    <thead>
+        <tr>
+            <th data-bind="click: onSort" data-prop="ID" style="cursor:pointer;" >ID</th>
+            <th data-bind="click: onSort" data-prop="Company" style="cursor:pointer;">Company</th>
+            <th data-bind="click: onSort" data-prop="Name" style="cursor:pointer;">Name</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: tableData">
+        <tr>
+            <td data-bind="text: ID"></td>
+            <td data-bind="text: Company"></td>
+            <td data-bind="text: Name"></td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/Scripts/Knockout/knockout.index.js")
+}
+
+
+
