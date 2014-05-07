@@ -6,7 +6,10 @@
 	};
 
 	function ViewModel() {
+	    debugger;
 	    var self = this;
+	    self.pageSize = ko.observable(2);
+	    self.currentPage = ko.observable(1);
 	    self.filterValue = ko.observable("");
 	    self.sortState = ko.observable({ prop: "ID", asc: true });
 	    self.data = ko.observableArray([
@@ -28,12 +31,23 @@
 	                return x[prop]() < y[prop]() ? -1 : x[prop]() > y[prop]() ? 1 : 0;
 	            }
 	            return x[prop]() < y[prop]() ? 1 : x[prop]() > y[prop]() ? -1 : 0;
-	        });	        
-	        return sortedData;
-	    });	    
+	        });
+
+	        var pageSize = self.pageSize();
+	        var currentPage = self.currentPage();
+
+	        var end = currentPage * pageSize;
+	        var start = end - (pageSize - 1);
+
+	        var pagedData = sortedData.slice((start - 1), end);
+
+	        return pagedData;
+	    });
+
 	    self.onFilter = function (data, event) {
 	        self.filterValue(event.target.value);
 	    };
+
 	    self.onSort = function (data, event) {	        
 	        var prop = event.target.dataset.prop;
 	        var newState;
@@ -43,6 +57,11 @@
 	            newState = { prop: prop, asc: true };
 	        }
 	        self.sortState(newState);
+	    };
+
+	    self.onPageChange = function (data, event) {
+	        debugger;
+	        self.currentPage(event.target.value);
 	    };
 	};	
 
