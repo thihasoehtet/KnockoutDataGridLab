@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .Pager {
+        background-color: LightGray;
+    }
+
+    a {
+        margin: 0px 5px;
+    }
+</style>
+
+<h2>James Timperlay</h2>
+
+<b>Filters:</b><br />
+<div data-bind="foreach: filter.filters">
+    <div>
+        <span data-bind="text: Name"></span>:<br />
+    </div>
+    <div data-bind="if: Type == 'select'">
+        <select data-bind="options: Options, optionsText: 'Name', value: CurrentOption"></select>
+    </div>
+    <div data-bind="if: Type == 'text'">
+        <input type="text" data-bind="value: Value, valueUpdate: 'afterkeydown'" />
+    </div>
+</div>
+<br />
+<b>Sorts:</b>
+Field:<br />
+<select data-bind="options: sorter.sortOptions, optionsText: 'Name', value: sorter.currentSortOption"></select>
+Direction:
+<select data-bind="options: sorter.sortDirections, optionsText: 'Name', value: sorter.currentSortDirection"></select>
+<br />
+<br />
+
+<div class="Pager"></div>
+<div class="NoRecords"></div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pager.currentPageRecords">
+        <tr>
+            <td>
+                <span data-bind="text: id"></span>
+            </td>
+            <td>
+                <span data-bind="text: name"></span>
+            </td>
+            <td>
+                <span data-bind="text: status"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/Scripts/James/james-timperley.js")
+}

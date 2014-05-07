@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JamesController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
     <Compile Include="Controllers\KoGridController.cs" />
     <Compile Include="Controllers\LabController.cs" />
@@ -302,6 +303,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\James\james-timperley.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
@@ -374,6 +376,7 @@
     <Content Include="Views\WijmoGrid\Index.cshtml" />
     <Content Include="Views\Knockout\Index.cshtml" />
     <Content Include="Scripts\Knockout\knockout.index.js" />
+    <Content Include="Views\James\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
