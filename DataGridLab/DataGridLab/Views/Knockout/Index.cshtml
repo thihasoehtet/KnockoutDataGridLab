@@ -20,7 +20,10 @@
         </tr>
     </tbody>
 </table>
-<input type="text" data-bind="value: currentPage" />
+Page Size:
+<select data-bind="options: [2,4,5], value: pageSize"></select>
+Pages:
+<select data-bind="options: pages, value: currentPage"></select>
 
 @section Scripts {
     @Scripts.Render("~/bundles/knockout")
