@@ -15,7 +15,9 @@
             new Person({ ID: "ANATR", Company: "Ana Trujillo Emparedados y helados", Name: "Ana Trujillo" }),
             new Person({ ID: "ANTON", Company: "Antonio Moreno Taqueria", Name: "Antonio Moreno" }),
             new Person({ ID: "AROUT", Company: "Around the Horn", Name: "Thomas Hardy" }),
-            new Person({ ID: "BERGS", Company: "Berglunds snabbkop", Name: "Christina Berglund" })
+            new Person({ ID: "BERGS", Company: "Berglunds snabbkop", Name: "Christina Berglund" }),
+            new Person({ ID: "Cbout", Company: "Call Me!", Name: "No Name" }),
+            new Person({ ID: "Dlot", Company: "Celo Helo Delo", Name: "Alex Coco" })
         ]);
 
         self.tableData = ko.computed(function () {

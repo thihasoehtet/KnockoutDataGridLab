@@ -21,9 +21,10 @@
     </tbody>
 </table>
 Page Size:
-<select data-bind="options: [2,4,5], value: pageSize"></select>
-Pages:
+<select data-bind="options: [2,4,5,10], value: pageSize"></select>
+Page:
 <select data-bind="options: pages, value: currentPage"></select>
+of <span data-bind="text: pages().length"></span>
 
 @section Scripts {
     @Scripts.Render("~/bundles/knockout")
