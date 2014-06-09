@@ -1,5 +1,28 @@
-﻿@{
+﻿@model IEnumerable<DataGridLab.Models.Record>
+
+@{
     ViewBag.Title = "ServerSide";
 }
 
 <h2>ServerSide</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>StartDate</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td data-bind="text: ID"></td>
+            <td data-bind="text: Company"></td>
+            <td data-bind="text: Name"></td>
+        </tr>
+    </tbody>
+</table>
