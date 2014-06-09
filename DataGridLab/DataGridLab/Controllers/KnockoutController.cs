@@ -16,5 +16,9 @@ namespace DataGridLab.Controllers
             return View();
         }
 
+        public ActionResult ServerSide()
+        {
+            return View();
+        }
     }
 }

@@ -331,6 +331,7 @@
     <Content Include="Scripts\Lab\lab.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\WijmoGridLab\wijmoGridLab.js" />
+    <Content Include="thiha_logo.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -376,6 +377,7 @@
     <Content Include="Views\Knockout\Index.cshtml" />
     <Content Include="Scripts\Knockout\knockout.index.js" />
     <Content Include="Views\James\Index.cshtml" />
+    <Content Include="Views\Knockout\ServerSide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -386,6 +388,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
