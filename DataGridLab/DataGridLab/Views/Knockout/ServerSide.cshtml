@@ -14,15 +14,21 @@
             <th>Office</th>
             <th>Age</th>
             <th>StartDate</th>
-            <th>Salary</th>
         </tr>
     </thead>
-    <tbody>
-
+    <tbody data-bind="foreach: table.data">
         <tr>
-            <td data-bind="text: ID"></td>
-            <td data-bind="text: Company"></td>
+            <td data-bind="text: Id"></td>
             <td data-bind="text: Name"></td>
+            <td data-bind="text: Position"></td>
+            <td data-bind="text: Office"></td>
+            <td data-bind="text: Age"></td>
+            <td data-bind="text: StartDate"></td>
         </tr>
     </tbody>
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/Scripts/Knockout/knockout-server-side.js")
+}

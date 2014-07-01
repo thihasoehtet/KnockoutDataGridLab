@@ -324,6 +324,7 @@
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.wijmo.js" />
     <Content Include="Scripts\knockout.wijmo.min.js" />
+    <Content Include="Scripts\Knockout\knockout-server-side.js" />
     <Content Include="Scripts\koGrid-2.1.1.debug.js" />
     <Content Include="Scripts\koGrid-2.1.1.js" />
     <Content Include="Scripts\KoGridLab\koGridLab.js" />
