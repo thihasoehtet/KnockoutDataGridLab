@@ -1,10 +1,14 @@
-﻿@model IEnumerable<DataGridLab.Models.Record>
-
-@{
+﻿@{
     ViewBag.Title = "ServerSide";
 }
 
 <h2>ServerSide</h2>
+<label>Name</label>
+<input type="text" data-bind="value: table.payload.name" />
+<button data-bind="click: search">Search</button>
+<label>Sort by Age</label>
+<select data-bind="options: ['asc','desc'], value: table.sortValue.direction"></select>
+<button data-bind="click: sort">Sort</button>
 <table>
     <thead>
         <tr>
@@ -27,6 +31,8 @@
         </tr>
     </tbody>
 </table>
+
+@Html.Hidden("hidPostUrl", Url.Action("ServerSidePaging"))
 
 @section Scripts {
     @Scripts.Render("~/bundles/knockout")

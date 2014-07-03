@@ -1,57 +1,83 @@
 ﻿(function (window, $, ko) {
-    function DataSource(callback) {
+    function DataSource(dataSourceHandler) {
         var self = this;
-        self.get = function (pageIndex, pageSize, filterValues, sorterValues) {
-            var data = callback(pageIndex, pageSize, filterValues, sorterValues);
-            return data;
+        self.dataSourceHandler = dataSourceHandler;
+        self.get = function (pageIndex, pageSize, payload, sortValue, setDataCallback) {
+            self.dataSourceHandler(pageIndex, pageSize, payload, sortValue, setDataCallback);
         };
     };
 
-    function KoTablePager(pageSize, filterValues, sorterValues, dataSource, dataTarget) {
+    function KoTablePager(currentPageIndex, pageSize, payload, sortValue, dataSource, dataTarget) {
         var self = this;
+        self.currentPageIndex = currentPageIndex;
         self.pageSize = pageSize;
-        self.filterValues = filterValues;
-        self.sorterValues = sorterValues;
+        self.payload = payload;
+        self.sortValue = sortValue;
         self.dataSource = dataSource;
         self.dataTarget = dataTarget;
-        self.onNext = function (currentPageIndex) {
-            self.onPageChange(currentPageIndex + 1);
+        self.onNext = function () {
+            self.goToPage(self.currentPageIndex() + 1);
         };
-        self.onPrev = function (currentPageIndex) {
-            self.onPageChange(currentPageIndex - 1);
+        self.onPrev = function () {
+            self.goToPage(self.currentPageIndex() - 1);
         };
         self.goToPage = function (targetPageIndex) {
-            var newData = self.dataSource.get(targetPageIndex, self.pageSize, self.filterValues, self.sorterValues);
-            self.dataTarget(newData);
+            self.dataSource.get(targetPageIndex, self.pageSize(), self.payload, self.sortValue, function (data) {
+                self.dataTarget(data);
+            });            
         };
     };
 
-    function KoTable(dataSourceHandler) {
+    function KoTable(defaultPageIndex, pageSize, dataSourceHandler, payload, sortValue) {
         var self = this;
-        self.index = ko.observable(1);
-        self.size = ko.observable(10);        
+        self.index = ko.observable(defaultPageIndex);
+        self.size = ko.observable(pageSize);
         self.data = ko.observableArray([]);
-        self.filterValues = ko.observableArray([]);
-        self.sorterValues = ko.observableArray([]);
+        self.payload = payload;
+        self.sortValue = sortValue;
         self.dataSource = new DataSource(dataSourceHandler);
-        self.pager = new KoTablePager(self.size, self.filterValues, self.sorterValues, self.dataSource, self.data);
+        self.pager = new KoTablePager(self.index, self.size, self.payload, self.sortValue, self.dataSource, self.data);
     };
 
     // Page View Setup
-    function dataSourceHandler(pageIndex, pageSize, filterValues, sorterValues) {
-        return [
-                { Id: 1, Name: "Airi Satou", Position: "Accountant", Office: "Tokyo", Age: 33, StartDate: "28/11/2014" },
-                { Id: 2, Name: "Bradley Greer", Position: "Software Engineer", Office: "London", Age: 41, StartDate: "13/10/2012" }
-        ];
-    };
-
-    function ViewModel() {
+    function ViewModel(table) {
         var self = this;
-        self.table = new KoTable(dataSourceHandler);
+        self.table = table;
+        self.search = function () {
+            self.table.pager.goToPage(1);
+        };
+        self.sort = function () {
+            self.table.pager.goToPage(1);
+        };        
     };
 
-    var vm = new ViewModel();
-    ko.applyBindings(vm);
+    function dataSourceHandler(pageIndex, pageSize, payload, sortValue, setDataCallback) {
+        debugger;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: $("#hidPostUrl").val(),
+            // since using JSON.stringify(), need to reference json2.js to work in older browser don't have json encoder/decoder 
+            data: JSON.stringify({
+                PageIndex: pageIndex,
+                PageSize: pageSize,
+                Payload: { Name: payload.name() },
+                SortValue: { Key: sortValue.key(), Direction: sortValue.direction() }
+            })
+        })
+        .done(function (data) {
+            setDataCallback(data);
+        });        
+    };
 
-    vm.table.pager.goToPage(1);
+    var defaultPageIndex = 1;
+    var pageSize = 10;
+    var payload = { name: ko.observable("") };
+    var sortValue = { key: ko.observable("Age"), direction: ko.observable("asc") };
+
+    var koTable = new KoTable(defaultPageIndex, pageSize, dataSourceHandler, payload, sortValue);    
+
+    var vm = new ViewModel(koTable);
+    ko.applyBindings(vm);    
 })(window, jQuery, ko);
