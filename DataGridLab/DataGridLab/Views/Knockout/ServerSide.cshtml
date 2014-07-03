@@ -5,10 +5,10 @@
 <h2>ServerSide</h2>
 <label>Name</label>
 <input type="text" data-bind="value: table.payload.name" />
-<button data-bind="click: search">Search</button>
+<button data-bind="click: table.init">Search</button>
 <label>Sort by Age</label>
 <select data-bind="options: ['asc','desc'], value: table.sortValue.direction"></select>
-<button data-bind="click: sort">Sort</button>
+<button data-bind="click: table.init">Sort</button>
 <table>
     <thead>
         <tr>
@@ -31,6 +31,11 @@
         </tr>
     </tbody>
 </table>
+<button data-bind="click: table.onPrev, enable: table.hasPrev">Prev</button>
+<button data-bind="click: table.onNext, enable: table.hasNext">Next</button>
+
+Page: <span data-bind="text: table.index"></span> of <span data-bind="text: table.pagesTotal"></span> |
+Total Records: <span data-bind="text: table.recordsTotal"></span>
 
 @Html.Hidden("hidPostUrl", Url.Action("ServerSidePaging"))
 

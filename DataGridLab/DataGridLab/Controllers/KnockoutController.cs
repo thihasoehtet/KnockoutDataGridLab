@@ -25,18 +25,26 @@ namespace DataGridLab.Controllers
         [HttpPost]
         public JsonResult ServerSidePaging(KoTable koTable)
         {
-            var data = GetRecords()
-                .Where(d => d.Name.ToLower().Contains(koTable.Payload.Name.ToLower()));
+            var q = GetRecords();
+
+            if (!string.IsNullOrWhiteSpace(koTable.Payload.Name))
+            {
+                q = q.Where(d => d.Name.ToLower().Contains(koTable.Payload.Name.ToLower()));
+            }                
 
             if (koTable.SortValue.Direction == "asc")
             {
-                data = data.OrderBy(d => d.Age);
+                q = q.OrderBy(d => d.Age);
             }
             else
             {
-                data = data.OrderByDescending(d => d.Age);
+                q = q.OrderByDescending(d => d.Age);
             }
-            return Json(data.ToList());
+
+            int recordsTotal = q.Count();
+            var data = q.Skip(koTable.Start).Take(koTable.Length).ToList();
+
+            return Json(new { data, recordsTotal });
         }
 
         private IEnumerable<Record> GetRecords()
@@ -60,8 +68,8 @@ namespace DataGridLab.Controllers
 
     public class KoTable
     {
-        public int PageIndex { get; set; }
-        public int PageSize { get; set; }
+        public int Start { get; set; }
+        public int Length { get; set; }
         public Payload Payload { get; set; }
         public SortValue SortValue { get; set; }
     }
